@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>TODO list <a href="{% url 'task:task-create' %}" class="btn text-light btn-primary link-to-page">Add task</a></h1>
+  {% if task_list %}
+  <table class="table">
+  {% for task in task_list %}
+   {% if task.task_is_done %}
+    <h4>{{ task.content }} Done <a href="{% url 'task:task-done' pk=task.pk %}" class="btn text-light btn-secondary link-to-page1">Undo</a></h4>
+   {% else %}
+    <h4>{{ task.content }} Note done <a href="{% url 'task-not-done' pk=task.pk %}" class="btn text-light btn-success link-to-page2">Complete</a></h4>
+   {% endif %}
+   <p>Created: {{ task.published_date|date:"F j, Y, g:i a" }} Deadline: {{ task.deadline }}</p>
+       <a>
+         <h4>
+             Tags: {{ task.tags }}
+             <div class="btn-group">
+                <h4>{{tag_list}}</h4>
+                 <h4><a href="{% url 'task:task-update' pk=task.pk %}">Update</a></h4>
+                 <h4><a href="{% url 'task:task-delete' pk=task.pk %}">Delete</a></h4>
+             </div>
+         </h4>
+       </a>
+   </tr>
+  {% endfor %}
+  </table>
+  {% else %}
+    <p>There are no drivers in the service.</p>
+  {% endif %}
+{% endblock %}

@@ -2,8 +2,40 @@ body {
     margin-top: 20px;
 }
 
-.link-to-page {
+h1 .link-to-page {
     float: right;
-    margin: 0 2px 0 2px;
+    margin: 0 5px 0 6px;
+    color: #fff; /* колір тексту */
+    background-color: #007bff; /* колір фону */
+}
+
+h4 .link-to-page:hover {
+    background-color: #0056b3; /* колір фону при наведенні */
+}
+
+h4 .link-to-page1 {
+    float: right;
+    margin: 0 5px 0 6px;
+    color: #fff; /* колір тексту */
+    background-color: #555555 /* колір фону */
+}
+
+h4 .link-to-page1:hover {
+    background-color: #0056b3; /* колір фону при наведенні */
+}
+
+h4 .link-to-page2 {
+    float: right;
+    margin: 0 5px 0 6px;
+    color: #fff; /* колір тексту */
+    background-color: #006b1b/* колір фону */
+}
+
+h4 .link-to-page2:hover {
+    background-color: #0056b3; /* колір фону при наведенні */
+}
+
+.float-left {
+    float: right;
 }
 
