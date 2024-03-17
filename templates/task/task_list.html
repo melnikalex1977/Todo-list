@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+        Tags<a href="{% url "task:driver-create" %}" class="btn text-light btn-primary link-to-page">Add</a>
+    </h1>
+
+    {% if tag_list %}
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    {% for tag_name in tag_list %}
+      <tr>
+        <td class="text-dark">
+          <h4>{{tag_name}}</h4>
+        </td>
+        <td>
+          <h4><a href="{% url 'task:driver-update' pk=tag_name.id %}" class="btn text-light btn-secondary">Update</a></h4>
+        </td>
+        <td>
+          <h4><a href="{% url 'task:driver-delete' pk=tag_name.id %}" class="btn text-light btn-secondary">Delete</a></h4>
+        </td>
+      </tr>
+    {% endfor %}
+
+    </table>
+    {% else %}
+      <p>There are no drivers in the service.</p>
+    {% endif %}
+{% endblock %}
