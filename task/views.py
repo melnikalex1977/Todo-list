@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from django import forms
+
+import task
 from .models import Task, Tag
 
 def index(request):
@@ -89,27 +91,13 @@ class TaskForm(forms.ModelForm):
         fields = ['task_is_done']
 
 
-class TaskNotDoneView(generic.UpdateView):
-    model = Task
-    fields = ["task_is_done"]
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.task_is_done = True
-        self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_success_url(self):
-        return reverse_lazy("task:task-list")
-
-
 class TaskDone(generic.UpdateView):
     model = Task
     fields = ["task_is_done"]
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object.task_is_done = False
+        self.object.task_is_done = not self.object.task_is_done
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
